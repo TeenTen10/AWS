@@ -768,3 +768,380 @@ For more information on AWS CloudSearch , please visit the below link:
 
 https://aws.amazon.com/cloudsearch/
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+34. Your IT Supervisor is worried about users accidentally deleting objects in an S3 bucket. Which of the following can help prevent accidental deletion of objects in an S3 bucket? Choose 2 answers from the options given below.
+A. Enable encryption for the S3 bucket.
+
+B. Enable MFA Delete on the S3 bucket.
+
+C. Enable Versioning on the S3 bucket.
+
+D. Enable IAM Roles on the S3 bucket.
+
+Answer
+B. & C.
+
+When a user performs a DELETE operation on an object, subsequent simple (un-versioned) requests will no longer retrieve the object. However, all versions of that object will continue to be preserved in your Amazon S3 bucket and can be retrieved or restored.
+
+Versioning’s MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. By default, all requests to your Amazon S3 bucket require your AWS account credentials. If you enable Versioning with MFA Delete on your Amazon S3 bucket, two forms of authentication are required to permanently delete a version of an object: your AWS account credentials and a valid six-digit code and serial number from an authentication device in your physical possession.
+
+For more information on the features of S3, please visit the following URL:
+
+https://aws.amazon.com/s3/faqs/
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+35. Your company needs to keep all system logs for audit purposes, and may rarely need to retrieve these logs for audit purposes and present them upon request within a week. The logs are 10TB in size. Which option would be the most cost-effective one for storing all these system logs?
+A. Amazon Glacier
+
+B. S3-ReducedRedundancy Storage
+
+C. EBS backed storage connected to EC2
+
+D. AWS CloudFront
+
+Answer
+A. Amazon Glacier
+
+Amazon Glacier is a secure, durable, and extremely low-cost cloud storage service for data archiving and long-term backup. It is designed to deliver 99.999999999% durability, and provides comprehensive security and compliance capabilities that can help meet even the most stringent regulatory requirements.
+
+For more information on Amazon Glacier, please refer to the below URL:
+
+https://aws.amazon.com/glacier/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+36. Your company is planning to store sensitive documents in a bucket in the Simple Storage service. They need to ensure that 
+all objects are encrypted at rest in the bucket. Which of the following can help accomplish this? Choose 2 answers from the options given below
+A. Ensure that the default encryption is enabled for the S3 bucket
+
+B. Ensure that the bucket policy is set to encrypt all objects that are added to the bucket
+
+C. Ensure that the bucket ACL is set to encrypt all objects that are added to the bucket
+
+D. Ensure to change the configuration of the bucket to use a KMS key to encrypt the objects
+
+Answer
+A. & D.
+
+Options B and C are incorrect since these options cannot be used to actually encrypt the objects
+
+The AWS Documentation mentions the following
+
+You have three mutually exclusive options depending on how you choose to manage the encryption keys:
+
+– Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3) – Each object is encrypted with a unique key employing strong multi-factor encryption.
+As an additional safeguard, it encrypts the key itself with a master key that it regularly rotates..
+
+– Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS) – Similar to SSE-S3, 
+but with some additional benefits along with some additional charges for using this service. 
+There are separate permissions for the use of an envelope key (that is, a key that protects your data’s encryption key)
+that provides added protection against unauthorized access of your objects in S3.
+
+– Use Server-Side Encryption with Customer-Provided Keys (SSE-C) – You manage the encryption keys and Amazon S3 manages the encryption, 
+as it writes to disks, and decryption, when you access your objects.
+
+For more information on Server – Side encryption, please refer to the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+37. Your company is planning to store sensitive documents in a bucket in the Simple Storage service. They want to keep the documents as private but serve content only to select users based on a particular time frame. Which of the following can help you accomplish this?
+A. Enable CORS for the S3 bucket
+
+B. Use KMS and enable encryption for the files
+
+C. Create pre-signed URL’s
+
+D. Enable versioning for the S3 bucket
+
+Answer
+C. Create pre-signed URL’s
+
+A pre-signed URL gives you access to the object identified in the URL, provided that the creator of the pre-signed URL has permissions to access that object. That is, if you receive a pre-signed URL to upload an object, you can upload the object only if the creator of the pre-signed URL has the necessary permissions to upload that object.
+
+All objects and buckets by default are private. The pre-signed URLs are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don’t require them to have AWS security credentials or permissions. When you create a pre-signed URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method (PUT for uploading objects), and an expiration date and time. The pre-signed URLs are valid only for the specified duration.
+
+Option A is incorrect since this is used for Cross origin access
+
+Option B is incorrect since this is used for encryption purposes.
+
+Option D is incorrect since this is used for versioning
+
+For more information on pre-signed URL’s, please refer to the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+38. Your company is planning on moving to the AWS Cloud. There is a strict compliance policy that mandates that data should be encrypted at rest. As an AWS Solution architect, you have been tasked to put the organization data on the cloud and also ensure that all compliance requirements have been met. Which of the below needs to be part of the implementation plan to ensure compliance with the security requirements. Choose 2 answers from the options given below.
+A. Ensurethat all EBS volumes are encrypted
+
+B. Ensurethat server-side encryption is enabled for S3 buckets
+
+C. Ensurethat SSL is enabled for all load balancers
+
+D. Ensurethat the EC2 Security rules only allow HTTPS traffic
+
+Answer
+A. & B.
+
+Amazon EBS encryption offers a simple encryption solution for your EBS volumes without the need to build, maintain, and secure your own key management infrastructure.
+
+Server-side encryption protects data at rest. Server-side encryption with Amazon S3-managed encryption keys (SSE-S3) uses strong multi-factor encryption. Amazon S3 encrypts each object with a unique key
+
+Options C and D are invalid since these are used to manage encryption of data in transit
+
+For more information on Encryption of EBS volumes, please visit the url
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html For more information on Encryption of S3 buckets, please visit the url
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+38. Your company has started hosting their data store on AWS by using the Simple Storage service. They are storing files which are downloaded by users on a frequent basis. After a duration of 3 months, the files need to transferred to archive storage since they are not used beyond this point. Which of the following could be used to effectively manage this requirement?
+A. Transfer the files via scripts from S3 to Glacier after a period of 3 months
+
+B. Use Lifecycle policies to transfer the files onto Glacier after a period of 3months
+
+C. Use Lifecycle policies to transfer the files onto Cold HDD after a period of 3months
+
+D. Create a snapshot of the files in S3 after a period of 3 months
+
+Answer
+B. UseLifecycle policies to transfer the files onto Glacier after a period of 3 months
+
+To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their lifecycle. A lifecycle configuration is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
+
+Transition actions—Define when objects transition to another storage class. For example, you might choose to transition objects to the STANDARD_IA storage class 30 days after you created them, or archive objects to the GLACIER storage class one year after creating them. Expiration actions—Define when objects expire. Amazon S3 deletes expired objects on your behalf. The lifecycle expiration costs depend on when you choose to expire objects.
+
+Option A is invalid since there is already the option of lifecycle policies
+
+Option C is invalid since lifecycle policies are used to transfer to Glacier or S3-Infrequent Access
+
+Option D is invalid since snapshots are used for EBS volumes
+
+For more information on S3 lifecycle policies, please visit the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+39 . Your company has confidential documents stored in the Simple Storage Service. Due to compliance requirements, there is a need for the data in the S3 bucket to be available in a different geographical location. As an architect, what change would you make to comply with this requirement?
+A. Apply Multi-AZ for the underlying S3 bucket.
+
+B. Copy the data to an EBS Volume in another region.
+
+C. Create a snapshot of the S3 bucket and copy it to another region.
+
+D. Enable Cross-Region Replication for the S3 bucket.
+
+Answer
+D. EnableCross-Region Replication for the S3 bucket.
+
+This is mentioned clearly as a use case for S3 Cross-Region Replication.
+
+You might configure Cross-Region Replication on a bucket for various reasons, including the following:
+
+Compliance requirements – Although, by default, Amazon S3 stores your data across multiple geographically distant Availability Zones, compliance requirements might dictate that you store data at even further distances. Cross-region replication allows you to replicate data between distant AWS Regions to satisfy these compliance requirements. For more information on S3 Cross-Region Replication, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+40. Your company has a requirement to host a static web site in AWS. Which of the following steps would help implement a quick and cost-effective solution for this requirement? Choose 2 answers from the options given below. Each answer forms a part of the solution.
+A. Uploadthe static content to an S3 bucket.
+
+B. Createan EC2 Instance and install a web server.
+
+C. Enableweb site hosting for the S3 bucket.
+
+D. Uploadthe code to the web server on the EC2 Instance.
+
+Answer
+A and C
+
+You can host a static website on Amazon Simple Storage Service (Amazon S3). On a static website, individual webpages include static content. They might also contain client-side scripts.
+
+For more information on static web site hosting using S3, please refer to the URL below.
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+41.Your company currently stores documents in an S3 bucket. They want to transfer the files to a low-cost storage unit after a duration of 2 months to save on cost. Which of the following can be used to perform this activity automatically?
+A. Use the events of the S3 bucket to transfer the files to Amazon Glacier
+
+B. Use the events of the S3 bucket to transfer the files to EBS volumes – Cold HDD
+
+C. Use the lifecycle policies of the S3 bucket to transfer the files to Amazon Glacier
+
+D. Use the lifecycle policies of the S3 bucket to transfer the files to EBS volumes – Cold HDD
+
+Answer
+C. Use the lifecycle policies of the S3 bucket to transfer the files to Amazon Glacier
+
+To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their lifecycle. A lifecycle configuration is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
+
+– Transition actions—Define when objects transition to another storage class. For example, you might choose to transition objects to the STANDARD_IA storage class 30 days after you created them, or archive objects to the GLACIER storage class one year after creating them. – Expiration actions—Define when objects expire. Amazon S3 deletes expired objects on your behalf.
+
+Options B and D are incorrect because ideally you don’t transfer to EBS volumes – Cold HDD
+
+Option A is incorrect because you need to use lifecycle policies
+
+For more information on lifecycle policies, please refer to the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+32. Your company currently has an S3 bucket in AWS. The objects in S3 are accessed quite frequently. Which of the following is an implementation step that can be considered to reduce the cost of accessing contents from the S3 bucket?
+A. Place the S3 bucket behind a CloudFront distribution.
+
+B. Enable Versioning on the S3 bucket.
+
+C. Enable Encryption on the S3 bucket.
+
+D. Place the S3 bucket behind an API Gateway.
+
+Answer
+A. Place the S3 bucket behind a CloudFront distribution.
+
+Using CloudFront can be more cost effective if your users access your objects frequently because, at higher usage, the price for CloudFront data transfer is lower than the price for Amazon S3 data transfer. In addition, downloads are faster with CloudFront than with Amazon S3 alone because your objects are stored closer to your users.
+
+For more information on using Cloudfront with S3, please visit the below URL:
+
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/MigrateS3ToCloudFront.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+43.Your company currently has an S3 bucket in AWS. The objects in S3 are accessed quite frequently. Which of the following is an implementation step that can be considered to reduce the cost of accessing contents from the S3 bucket?
+A. Place the S3 bucket behind a CloudFront distribution.
+
+B. Enable Versioning on the S3 bucket.
+
+C. Enable Encryption on the S3 bucket.
+
+D. Place the S3 bucket behind an API Gateway.
+
+Answer
+A. Place the S3 bucket behind a CloudFront distribution.
+
+Using CloudFront can be more cost effective if your users access your objects frequently because, at higher usage, the price for CloudFront data transfer is lower than the price for Amazon S3 data transfer. In addition, downloads are faster with CloudFront than with Amazon S3 alone because your objects are stored closer to your users.
+
+For more information on using Cloudfront with S3, please visit the below URL:
+
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/MigrateS3ToCloudFront.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+44.You work for a company that stores records for a minimum of 10 years. Most of these records will never be accessed but must be made available upon request (within a few hours). What is the most cost-effective storage option in this scenario? Choose the correct answer from the options below.
+A. Simple Storage Service
+
+B. EBS Volumes
+
+C. Glacier
+
+D. AWS Import/Export
+
+Answer
+C. Glacier
+
+Amazon Glacier is a secure, durable, and extremely low-cost cloud storage service for data archiving and long-term backup. Customers can reliably store large or small amounts of data for as little as $0.004 per gigabyte per month, a significant savings compared to on-premises solutions. To keep costs low yet suitable for varying retrieval needs, Amazon Glacier provides three options for access to archives, from a few minutes to several hours.
+
+For more information on Amazon Glacier, please refer to the link below.
+
+https://aws.amazon.com/glacier/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+45. You need to have the ability to archive documents in AWS. This needs to be a cost-effective solution. Which of the following would you use to meet this requirement?
+A. Amazon Glacier
+
+B. Amazon S3 Standard Infrequent Access
+
+C. Amazon EFS
+
+D. Amazon S3 Standard
+
+Answer
+A. Amazon Glacier
+
+Amazon Glacier is an extremely low-cost storage service that provides durable storage with security features for data archiving and backup. With Amazon Glacier, customers can store their data cost effectively for months, years, or even decades. Amazon Glacier enables customers to offload the administrative burdens of operating and scaling storage to AWS, so they don’t have to worry about capacity planning, hardware provisioning, data replication, hardware failure detection and recovery, or time-consuming hardware migrations.
+
+For more information on Amazon Glacier, please visit the following URL:
+
+https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+46. You need to ensure that objects in an S3 bucket are available in another region. This is because of the criticality of the data that is hosted in the S3 bucket. How can you achieve this in the easiest way possible?
+A. Enable Cross-Region Replication for the bucket.
+
+B. Write a script to copy the objects to another bucket in the destination region.
+
+C. Create an S3 snapshot in the destination region.
+
+D. Enable versioning which will copy the objects to the destination region.
+
+Answer
+A. Enable Cross-Region Replication for the bucket.
+
+Cross-Region Replication is a bucket-level configuration that enables automatic, asynchronous copying of objects across buckets in different AWS Regions.
+
+For more information on Cross-Region Replication in the Simple Storage Service, please visit the below URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+47. You need to ensure that data stored in S3 is encrypted but do not want to manage the encryption keys. Which of the following encryption mechanisms can be used in this case?
+A. SSE-S3
+
+B. SSE-C
+
+C. SSE-KMS
+
+D. SSE-SSL
+
+Answer
+A. SSE-S3
+
+SSE-S3 requires that Amazon S3 manages the data and master encryption keys. SSE-C requires that you manage the encryption keys. SSE-KMS requires that AWS manages the data key but you manage the master key in AWS KMS. For more information on using the Key Management service for S3, please visit the below URL:
+
+https://docs.aws.amazon.com/kms/latest/developerguide/services-s3.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+48. You have been given a business requirement to retain log files for your application for 10 years. You need to regularly retrieve the most recent logs for troubleshooting. Your logging system must be cost-effective, given the large volume of logs. What technique should you use to meet these requirements?
+A. Store your log in Amazon CloudWatch Logs.
+
+B. Store your logs in Amazon Glacier.
+
+C. Store your logs in Amazon S3, and use Lifecycle Policies to archive to Amazon Glacier.
+
+D. Store your logs on Amazon EBS, and use Amazon EBS Snapshots to archive them.
+
+Answer
+C. Store your logs in Amazon S3, and use Lifecycle Policies to archive to Amazon Glacier.
+
+Option A is invalid, because it is not a cost-effective option.
+
+Option B is invalid, because it will not serve the purpose of regularly retrieving the most recent logs for troubleshooting. You will need to pay more to retrieve the logs faster from this storage option.
+
+Option D is invalid because it is neither an ideal nor cost-effective option.
+
+For more information on Lifecycle management please refer to the below link:
+
+http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+49. You have an S3 bucket hosted in AWS which is used to store promotional videos you upload. You need to provide access to users for a limited duration of time. How can this be achieved?
+A. Use versioning and enable a timestamp for each version.
+
+B. Use Pre-Signed URLs.
+
+C. Use IAM Roles with a timestamp to limit the access.
+
+D. Use IAM policies with a timestamp to limit the access.
+
+Answer
+C. Use Pre-Signed URLs.
+
+All objects by default are private. Only the object owner has permission to access these objects. However, the object owner can optionally share objects with others by creating a pre-signed URL, using their own security credentials, to grant time-limited permission to download the objects.
+
+For more information on pre-signed URLs, please visit the URL below.
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html
