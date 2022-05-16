@@ -1,0 +1,765 @@
+1. A company currently storing a set of documents in the AWS Simple Storage Service, is worried about the potential loss if these documents are ever deleted. Which of the following can be used to ensure protection from loss of the underlying documents in S3?
+A. Enable Versioning for the underlying S3 bucket.
+
+B. Copythe bucket data to an EBS Volume as a backup.
+
+C. Createa Snapshot of the S3 bucket.
+
+D. Enablean IAM Policy which does not allow deletion of any document from the S3 bucket.
+
+Answer
+A. Enable Versioning for the underlying S3 bucket.
+
+Versioning as shown below. Versioning is on the bucket level and can be used to recover prior versions of an object.
+
+For more information on S3 Versioning, please refer to the below URL:https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. A company has a requirement for archival of 6TB of data. There is an agreement with the stakeholders for an 8-hour agreed retrieval time. Which of the following can be used as the MOST cost-effective storage option?
+A. AWS S3 Standard
+
+B. AWS S3 Infrequent Access
+
+C. AWS Glacier
+
+D. AWS EBS Volumes
+
+Answer
+C. AWS Glacier
+
+Amazon Glacier is the perfect solution for this. Since the agreed time frame for retrieval is met at 8 hours, this will be the most cost effective option.
+
+For more information on AWS Glacier, please visit the following URL:
+
+https://aws.amazon.com/documentation/glacier/
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. A company has a sales team and each member of this team uploads their sales figures daily. A Solutions Architect needs a durable storage solution for these documents and also a way to prevent users from accidentally deleting important documents. What among the following choices would deliver protection against unintended user actions?
+A. Store data in an EBS Volume and create snapshots once a week.
+
+B. Store data in an S3 bucket and enable versioning.
+
+C. Store data in two S3 buckets in different AWS regions.
+
+D. Store data on EC2 Instance storage.
+
+Answer
+A. Prefix each object name with a random string.
+
+For more information on Amazon S3, please visit the following URL:
+
+https://aws.amazon.com/s3/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. A company has an application that delivers objects from S3 to users. Of late, some users spread across the globe have been complaining of slow response times. Which of the following additional steps would help in building a cost-effective solution and also help ensure that the users get an optimal response to objects from S3?
+A. Use S3 Replication to replicate the objects to regions closest to the users.
+
+B. Ensure S3 Transfer Acceleration is enabled to ensure all users get the desiredresponse times.
+
+C. Place an ELB in front of S3 to distribute the load across S3.
+
+D. Placethe S3 bucket behind a CloudFront distribution.
+
+Answer
+D. Placethe S3 bucket behind a CloudFront distribution.
+
+If your workload is mainly sending GET requests, in addition to the preceding guidelines, you should consider using Amazon CloudFront for performance optimization.
+
+Integrating Amazon CloudFront with Amazon S3, you can distribute content to your users with low latency and a high data transfer rate. You will also send fewer direct requests to Amazon S3, which will reduce your costs.
+
+For example, suppose that you have a few objects that are very popular. Amazon CloudFront fetches those objects from Amazon S3 and caches them. Amazon CloudFront can then serve future requests for the objects from its cache, reducing the number of GET requests it sends to Amazon S3.
+
+For more information on performance considerations in S3, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html Options A and B are incorrect. S3 Cross-Region Replication and Transfer Acceleration incurs cost.
+
+Option C is incorrect. ELB is used to distribute traffic on to EC2 Instances.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. A company has an application that stores images and thumbnails for images on S3. While the thumbnail images need to be available for download immediately, the images and thumbnails themselves are not accessed that frequently.
+Which is the most cost-efficient storage option to store images that meet these requirements?
+
+A. Amazon Glacier with Expedited Retrievals.
+
+B. Amazon S3 Standard Infrequent Access
+
+C. Amazon EFS
+
+D. Amazon S3 Standard
+
+Answer
+B. Amazon S3 Standard Infrequent Access
+
+Amazon S3 Infrequent access is perfect if you want to store data that is not frequently accessed. It is more cost effective than Option D (Amazon S3 Standard). If you choose Amazon Glacier with Expedited Retrievals, you defeat the whole purpose of the requirement, because of its increased cost.
+
+For more information on AWS Storage Classes, please visit the following URL:
+
+https://aws.amazon.com/s3/storage-classes/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. A company has an application that uses the S3 bucket as its data layer. As per the monitoring on the S3 bucket, it can be seen that the number of GET requests is 400 requests per second. The IT Operations team receives service requests about users getting HTTP 500 or 503 errors while accessing the application. What can be done to resolve these errors? Choose 2 answers from the options given below.
+A. Add a CloudFront distribution in front of the bucket.
+
+B. Add randomness to the key names.
+
+C. Add an ELB in front of the S3 bucket.
+
+D. Enable Versioning for the S3 bucket.
+
+Answer
+A. & B.
+
+When your workload is sending mostly GET requests, you can add randomness to key names. In addition, you can integrate Amazon CloudFront with Amazon S3 to distribute content to your users with low latency and a high data transfer rate.
+
+Note: S3 can now scale to high request rates. Your application can achieve at least 3,500 PUT/POST/DELETE and 5,500 GET requests per second per prefix in a bucket. However the AWS exam questions are not yet updated reflecting these changes in the questions. Hence the answer for this question is based on the initial request rate performance.
+
+For more information on S3 bucket performance, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/PerformanceOptimization.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. A company hosts data in S3. There is a requirement to control access to the S3 buckets. Which are the 2 ways in which this can be achieved?
+A. Use Bucket Policies.
+
+B. Use the Secure Token Service.
+
+C. Use IAM user policies.
+
+D. Use AWS Access Keys.
+
+Answer
+A. & C.
+
+Amazon S3 offers access policy options broadly categorized as resource-based policies and user policies. Access policies you attach to your resources (buckets and objects) are referred to as resource-based policies. For example, bucket policies and access control lists (ACLs) are resource-based policies. You can also attach access policies to users in your account. These are called user policies. You may choose to use resource-based policies, user policies, or some combination of these to manage permissions to your Amazon S3 resources.
+
+For more information on S3 access control, please refer to the below link:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. A company hosts data in S3. There is now a mandate that going forward, all data in the S3 bucket needs to be encrypted at rest. How can this be achieved?
+A. Use AWS Access Keys to encrypt the data.
+
+B. Use SSL Certificates to encrypt the data.
+
+C. Enable Server-side encryption on the S3 bucket.
+
+D. Enable MFA on the S3 bucket.
+
+Answer
+C. EnableServer-side encryption on the S3 bucket.
+
+Server-side encryption is about data encryption at rest—that is, Amazon S3 encrypts your data at the object level as it writes it to disks in its data centers and decrypts it for you when you access it. As long as you authenticate your request and you have access permissions, there is no difference in the way you access encrypted or unencrypted objects.
+
+For more information on S3 Server-side encryption, please refer to the below link:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9. A company is asking its developers to store application logs in an S3 bucket. These logs are only required for a temporary period of time after which, they can be deleted. Which of the following steps can be used to effectively manage this?
+A. Create a cron job to detect the stale logs and delete them accordingly.
+
+B. Use a bucket policy to manage the deletion.
+
+C. Usean IAM Policy to manage the deletion.
+
+D. Use S3 Lifecycle Policies to manage the deletion.
+
+Answer
+D. UseS3 Lifecycle Policies to manage the deletion.
+
+Lifecycle configuration enables you to specify the lifecycle management of objects in a bucket. The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects. These actions can be classified as follows:
+
+Transition actions – In which you define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation. Expiration actions – In which you specify when the objects expire. Then, Amazon S3 deletes the expired objects on your behalf. For more information on S3 Lifecycle Policies, please refer to the URL below.
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+A built-in feature exists to do this job, hence Options A, B and C are not necessary.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+0. A company is building a service using Amazon EC2 as a worker instance that will process an uploaded audio file and generate a text file. You must store both of these files in the same durable storage until the text file is retrieved. You do not know what the storage capacity requirements are. Which storage option is both cost-efficient and scalable?
+A. Multiple Amazon EBS Volume with snapshots
+
+B. A single Amazon Glacier vault
+
+C. A single Amazon S3 bucket
+
+D. Multiple instance stores
+
+Answer
+C. A single Amazon S3 bucket
+
+Amazon S3 is the best storage option for this. It is durable and highly available.
+
+For more information on Amazon S3, please refer to the below URL:
+
+https://aws.amazon.com/s3/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. A company is planning on allowing their users to upload and read objects from an S3 bucket. Due to the numerous amount of users, the read/write traffic will be very high. How should the architect maximize Amazon S3 performance?
+A. Prefix each object name with a random string.
+
+B. Use the STANDARD_IA storage class.
+
+C. Prefix each object name with the current data.
+
+D. Enable versioning on the S3 bucket.
+
+Answer
+A. Prefix each object name with a random string.
+
+If the request rate is high, you can use hash keys or random strings to prefix to the object name. Here, partitions used to store the objects will be better distributed and hence allow for better read/write performance for your objects.
+
+For more information on how to ensure performance in S3, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+12. A company is planning on migrating their infrastructure to AWS. For the data stores , the company does not want to manage the underlying infrastructure. Which of the following would be ideal for this scenario? Choose 2 answers from the options give below
+A. AWS S3
+
+B. AWS EBS Volumes
+
+C. AWS DynamoDB
+
+D. AWS EC2
+
+Answer
+A. & C.
+
+AWS S3 is object level storage that is completely managed by AWS.
+
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database, so that you don’t have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
+
+Option B is incorrect since you need to manage EBS volumes
+
+Option D is incorrect since this is a compute service
+
+For more information on DynamoDB, please refer to the below link
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html For more information on Simple Storage Service, please refer to the below link
+
+https://aws.amazon.com/s3/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13. A company is planning on storing their files from their on-premises location onto the Simple Storage service. After a period of 3 months, they want to archive the files, since they would be rarely used. Which of the following would be the right way to service this requirement?
+A. Use an EC2 instance with EBS volumes. After a period of 3 months, keep on taking snapshots of the data.
+
+B. Store the data on S3 and then use Lifecycle policies to transfer the data to Amazon Glacier
+
+C. Store the data on Amazon Glacier and then use Lifecycle policies to transfer the data to Amazon S3
+
+D. Use an EC2 instance with EBS volumes. After a period of 3 months , keep on taking copies of the volume using Cold HDD volume type.
+
+Answer
+C. Storethe data on S3 and then use Lifecycle policies to transfer the data to Amazon Glacier
+
+To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their lifecycle. A lifecycle configuration is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
+
+· Transition actions—Define when objects transition to another storage class. For example, you might choose to transition objects to the STANDARD_IA storage class 30 days after you created them, or archive objects to the GLACIER storage class one year after creating them.
+
+· Expiration actions—Define when objects expire. Amazon S3 deletes expired objects on your behalf.
+
+Options A and D are incorrect since using EBS volumes is not the right storage option for this sort of requirement
+
+Option C is incorrect since the files should be initially stored in S3.
+
+For more information on AWS S3 Lifecycle policies, please visit the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+14. A company is planning to store sensitive documents in an S3 bucket. They want to ensure that documents are encrypted at rest. They want to ensure that they manage the underlying keys which are used for encryption. Which of the following can be used for this purpose? Choose 2 answers from the options given below
+A. Use S3 server-side encryption with Customer keys
+
+B. Use S3 client-side encryption
+
+C. Use S3 server-side encryption with AWS managed keys
+
+D. Use S3 server-side encryption with AWS KMS keys with Key policy document of size 40kb.
+
+Answer
+A. & D.
+
+Server-side encryption is about protecting data at rest. Using server-side encryption with customer-provided encryption keys (SSE-C) allows you to set your own encryption keys. With the encryption key you provide as part of your request, Amazon S3 manages both the encryption, as it writes to disks, and decryption, when you access your objects. Therefore, you don’t need to maintain any code to perform data encryption and decryption. The only thing you do is manage the encryption keys you provide.
+
+Options C is incorrect since here you will still not manage the complete lifecycle of the keys.
+
+Options D is incorrect, because the maximum key policy document size is 32kb.
+
+https://docs.aws.amazon.com/kms/latest/developerguide/limits.html
+
+Option E is correct since your own keys can be uploaded to the Key management service.
+
+https://aws.amazon.com/blogs/aws/new-bring-your-own-keys-with-aws-key-management-service/
+
+For more information on Server side encryption with customer keys and Client side encryption, please refer to the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+15. A company is required to host a static web site in AWS. Which of the following would be an easy and cost-effective way to set this up?
+A. Create an AWS Lambda function to insert the required entry for each uploaded file.
+
+B. UseAWS CloudWatch to probe for any S3 event.
+
+C. Add an event with notification send to Lambda.
+
+D. Addthe CloudWatch event to the DynamoDB table streams section.
+
+Answer
+C. Add an event with notification send to Lambda.
+
+You can host a static website on Amazon Simple Storage Service (Amazon S3). On a static website, individual webpages include static content. They might also contain client-side scripts.
+
+For more information on AWS S3 web site hosting, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+A company is to run a service on AWS to provide offsite backups for images on laptops and phones.
+The solution must support millions of customers with thousands of images per customer. Though the images will be retrieved infrequently, they must be available for retrieval immediately.
+
+Which is the MOST cost efficient storage option that meets these requirements?
+
+A. Amazon Glacier with Expedited retrievals
+
+B. Amazon S3 Standard Infrequent Access
+
+C. Amazon EFS
+
+D. Amazon S3 Standard
+
+Answer
+B. Amazon S3 Standard Infrequent Access
+
+Amazon S3 Infrequent Access is perfect if you want to store data that need not be frequently accessed. It is must more cost effective than Amazon S3 Standard (Option D). And if you choose Amazon Glacier with expedited retrievals, then you defeat the whole purpose of the requirement, because you would have an increased cost with this option.
+
+For more information on AWS Storage classes, please visit the following URL:
+
+https://aws.amazon.com/s3/storage-classes/
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+17. A company needs a solution to store and archive corporate documents and has determined that Amazon Glacier is the right solution. It is required that data is delivered within 5 minutes of a retrieval request.
+Which feature in Amazon Glacier can help meet this requirement?
+
+A. Defininga Vault Lock
+
+B. Using Expedited retrieval
+
+C. Using Bulk retrieval
+
+D. Using Standard retrieval
+
+Answer
+B. Using Expedited retrieval
+
+The AWS Documentation mentions the following:
+
+Expedited retrievals allow you to quickly access your data when occasional urgent requests for a subset of archives are required.
+
+For more information on AWS Glacier Retrieval, please visit the following URL:
+
+https://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive-two-steps.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+18. A company needs to develop an application that will do the following
+– Upload images posted by users – Store the Images in a durable location – Store the metadata about that image in another durable data store
+
+Which of the following should be consider in the design phase?
+
+A. Store the Images in Amazon Glacier and store the metadata in DynamoDB
+
+B. Store the Images in Amazon S3 and store the metadata in Amazon Glacier
+
+C. Store the Images in DynamoDB and store the metadata in Amazon S3
+
+D. Store the Images in Amazon S3 and store the metadata in DynamoDB
+
+Answer
+D. Store the Images in Amazon S3 and store the metadata in DynamoDB
+
+Amazon S3 is used for object level storage and should be used to store files such as Images, videos etc. The metadata can be in JSON format which can then be stored in DynamoDB tables.
+
+Options A and B are incorrect since Amazon Glacier is used for archive storage
+
+Option C is incorrect since you cannot store images in DynamoDB
+
+For more information on Amazon S3 and DynamoDB, please refer to the below URL
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+19. A company needs to store images that are uploaded by users via a mobile application. There is also a need to ensure that a security measure is in place to avoid the data loss.
+What step should be taken for protection against unintended user actions?
+
+A. Store data in an EBS volume and create snapshots once a week.
+
+B. Store data in an S3 bucket and enable versioning.
+
+C. Store data in two S3 buckets in different AWS regions.
+
+D. Store data on EC2 instance storage.
+
+Answer
+B. Store data in an S3 bucket and enable versioning.
+
+Amazon S3 has an option for versioning as shown below. Versioning is on the bucket level and can be used to recover prior versions of an object.
+
+For more information on AWS S3 versioning, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html
+
+Option A is invalid as it does not offer protection against accidental deletion of files.
+
+Option C is invalid as S3 buckets are global.
+
+Option D is ephemeral.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+20. A company plans to have their application hosted in AWS. This application has users uploading files and then using a public URL for downloading them at a later stage. Which of the following designs would help fulfill this requirement?
+A. Have EBS Volumes hosted on EC2 Instances to store the files.
+
+B. Use Amazon S3 to host the files.
+
+C. Use Amazon Glacier to host the files since this would be the cheapest storage option.
+
+D. Use EBS Snapshots attached to EC2 Instances to store the files.
+
+Answer
+B. Use Amazon S3 to host the files.
+
+If you need storage for the Internet, AWS Simple Storage Service is the best option. Each uploaded file automatically gets a public URL, which can be used to download the file at a later point in time.
+
+For more information on Amazon S3, please refer to the below URL:
+
+https://aws.amazon.com/s3/ Options A and D are incorrect because EBS Volumes or Snapshots do not have Public URL.
+
+Option C is incorrect because Glacier is mainly used for data archiving purposes.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+21. A company stores its log data in an S3 bucket. There is a current need to have search capabilities available for the data in S3. How can this be achieved in an efficient and ongoing manner? Choose 2 answers from the options below. Each answer forms a part of the solution.
+A. Use an AWS Lambda function which gets triggered whenever data is added to the S3bucket.
+
+B. Create a Lifecycle Policy for the S3 bucket.
+
+C. Load the data into Amazon Elasticsearch.
+
+D. Load the data into Glacier.
+
+Answer
+A & C
+
+AWS Elasticsearch provides full search capabilities and can be used for log files stored in the S3 bucket.
+
+AWS Documentation mentions the following with regard to the integration of Elasticsearch with S3:
+
+You can integrate your Amazon ES domain with Amazon S3 and AWS Lambda. Any new data sent to an S3 bucket triggers an event notification to Lambda, which then runs your custom Java or Node.js application code. After your application processes the data, it streams the data to your domain.
+
+For more information on integration between Elasticsearch and S3, please visit the following URL:
+
+https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-aws-integrations.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+22. A company wants to store their documents in AWS. Initially, these documents will be used frequently, and after a duration of 6 months, they will need to be archived. How would you architect this requirement?
+A. Store the files in Amazon EBS and create a Lifecycle Policy to remove the files after 6 months.
+
+B. Store the files in Amazon S3 and create a Lifecycle Policy to archive the files after 6 months.
+
+C. Store the files in Amazon Glacier and create a Lifecycle Policy to remove the filesafter 6 months.
+
+D. Store the files in Amazon EFS and create a Lifecycle Policy to remove the files after 6 months.
+
+Answer
+B. Store the files in Amazon S3 and create a Lifecycle Policy to archive the files after 6 months.
+
+Based on the New S3 announcement (S3 performance)Amazon S3 now provides increased request rate performance. But AWS not yet updated the exam Questions.
+So as per exam Option B is the correct answer.
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html One way to introduce randomness to key names is to add a hash string as prefix to the key name. 
+For example, you can compute an MD5 hash of the character sequence that you plan to assign as the key name. From the hash, pick a specific number of characters, and add them as the 
+prefix to the key name. The following example shows key names with a four-character hash.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+23. A million images are required to be uploaded to S3. What option ensures optimal performance in this case?
+A. Usea sequential ID for the prefix.
+
+B. Use a hexadecimal hash for the prefix.
+
+C. Use a hexadecimal hash for the suffix.
+
+D. Use a sequential ID for the suffix.
+
+Answer
+B. Use a hexadecimal hash for the prefix.
+
+For more information on S3 performance considerations, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html
+
+Note: Amazon S3 maintains an index of object key names in each AWS Region. 
+Object keys are stored in UTF-8 binary ordering across multiple partitions in the index. 
+The key name determines which partition the key is stored in. Using a sequential prefix, 
+such as a timestamp or an alphabetical sequence, increases the likelihood that Amazon S3 will target a specific partition for a large number of your keys,
+which can overwhelm the I/O capacity of the partition.
+
+If your workload is a mix of request types, introduce some randomness to key names by adding a hash string as a prefix to the key name.
+By introducing randomness to your key names, the I/O load is distributed across multiple index partitions. 
+For example, you can compute an MD5 hash of the character sequence that you plan to assign as the key,
+and add three or four characters from the hash as a prefix to the key name.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+24. A Solutions Architect designing a solution to store and archive corporate documents, has determined Amazon Glacier as the right choice of solution.
+An important requirement is that the data must be delivered within 10 minutes of a retrieval request.
+
+Which feature in Amazon Glacier can help meet this requirement?
+
+A. Vault Lock
+
+B. Expedited retrieval
+
+C. Bulk retrieval
+
+D. Standard retrieval
+
+Answer
+B. Expedited retrieval
+
+Expedited retrievals to access data in 1 – 5 minutes for a flat rate of $0.03 per GB retrieved. 
+Expedited retrievals allow you to quickly access your data when occasional urgent requests for a subset of archives are required.
+
+For more information on AWS Glacier Retrieval, please visit the following URL:
+
+https://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive-two-steps.html The other two are standard ( 3-5 hours retrieval time)
+and Bulk retrievals which is the cheapest option.(5-12 hours retrieval time)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+25. A Solutions Architect is designing a highly scalable system to track records. These records must remain available for immediate download for up to three months and then must be deleted.
+What is the most appropriate decision for this use case?
+
+A. Store the files in Amazon EBS and create a Lifecycle Policy to remove files after 3 months
+
+B. Store the files in Amazon S3 and create a Lifecycle Policy to remove files after 3 months
+
+C. Store the files in Amazon Glacier and create a Lifecycle Policy to remove files after 3 months
+
+D. Store the files in Amazon EFS and create a Lifecycle Policy to remove files after 3 months
+
+Answer
+B. Store the files in Amazon S3 and create a Lifecycle Policy to remove files after 3 months.
+
+Option A is invalid, since the records need to be stored in a highly scalable system.
+
+Option C is invalid, since the records must be available for immediate download.
+
+Option D is invalid, because it does not have the concept of a Lifecycle Policy.
+
+AWS Documentation mentions the following on Lifecycle Policies:
+
+Lifecycle configuration enables you to specify the Lifecycle Management of objects in a bucket. The configuration is a set of one or more rules, 
+where each rule defines an action for Amazon S3 to apply to a group of objects. These actions can be classified as follows:
+
+Transition actions – In which you define when the objects transition to another storage class. For example, 
+you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation,
+or archive objects to the GLACIER storage class one year after creation.
+
+Expiration actions – In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
+
+For more information on AWS S3 Lifecycle Policies, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+26. A Solutions Architect is designing a solution to store and archive corporate documents and has determined that Amazon Glacier is the right solution. Data has be retrieved within 3-5 hrs as directed by the management.
+Which feature in Amazon Glacier can help meet this requirement and ensure cost-effectiveness?
+
+A. Vault Lock
+
+B. Expedited retrieval
+
+C. Bulk retrieval
+
+D. Standard retrieval
+
+Answer
+D. Standard retrieval
+
+Standard retrievals are a low-cost way to access your data within just a few hours. For example, you can use Standard retrievals to restore backup data, retrieve archived media content for same-day editing or distribution, or pull and analyze logs to drive business decisions within hours.
+
+For more information on Amazon Glacier retrievals, please visit the following URL:
+
+https://aws.amazon.com/glacier/faqs/#dataretrievals
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+27. A Solutions Architect is developing a document sharing application and needs a storage layer. The storage should provide automatic support for versioning so that users can easily roll back to a previous version or recover a deleted account.
+Which AWS service will meet the above requirements?
+
+A. Amazon S3
+
+B. Amazon EBS
+
+C. Amazon EFS
+
+D. Amazon Storage Gateway VTL
+
+Answer
+A. Amazon S3
+
+Option B is incorrect. EBS provides persistent block storage volumes for use with EC2. Option C is incorrect. EFS is an elastic and scalable file storage. 
+Option D is incorrect. 
+AWS Storage Gateway VTL helps to integrate your on premise IT infrastructure with AWS storage.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+28. A storage solution is required in AWS to store videos uploaded by the user. After a period of a month, these videos can be deleted. How should this be 
+implemented in an cost-effective manner?
+A. Use EBS Volumes to store the videos. Create a script to delete the videos after amonth.
+
+B. Use transition rule in S3 to move the files to Glacier and use expiration rule to delete it after 30 days.
+
+C. Store the videos in Amazon Glacier and then use Lifecycle Policies.
+
+D. Store the videos using Stored Volumes. Create a script to delete the videos after amonth.
+
+Answer
+B. Use transition rule in S3 to move the files to Glacier and use expiration rule to delete it after 30 days.
+
+Lifecycle configuration enables you to specify the lifecycle management of objects in a bucket. 
+The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects.
+These actions can be classified as follows:
+
+Transition actions – In which you define when objects transition to another storage class. For example, 
+you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation,
+or archive objects to the GLACIER storage class one year after creation. Expiration actions – In which you specify when the objects expire.
+Then Amazon S3 deletes the expired objects on your behalf.
+
+For more information on AWS S3 Lifecycle policies, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+Note: Yes, if we delete the data within 30 days, we will incur certain charges. And the question says that “How should this be implemented in an cost-effective manner?” The charge which is going to incur because of not storing data for 90 days in Glacier is would be less than storing in S3.
+
+Further, in the given options we need to choose the cost-effective option, that doesn’t mean it has to be the most cost-effective.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+29. An application allows a manufacturing site to upload files. Each uploaded 3 GB file is processed to extract metadata, and this process takes a few seconds per file. The frequency at which the uploads happen is unpredictable. For instance, there may be no updates for hours, followed by several files being uploaded concurrently.
+What architecture addresses this workload in the most cost efficient manner?
+
+A. Use a Kinesis Data Delivery Stream to store the file. Use Lambda for processing.
+
+B. Use an SQS queue to store the file, to be accessed by a fleet of EC2Instances.
+
+C. Store the file in an EBS volume, which can then be accessed by another EC2 Instancefor processing.
+
+D. Store the file in an S3 bucket. Use Amazon S3 event notification to invoke aLambda function for file processing.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+30. An application allows users to upload images to an S3 bucket. Initially these images will be downloaded quite frequently, but after some time, the images might only be accessed once a week and the retrieval time should be as minimal as possible.
+What could be done to ensure a COST effective solution? Choose 2 answers from the options below. Each answer forms part of the solution.
+
+A. Store the objects in Amazon Glacier.
+
+B. Store the objects in S3 – Standard storage.
+
+C. Create a Lifecycle Policy to transfer the objects to S3 – Standard storage after acertain duration of time.
+
+D. Create a Lifecycle Policy to transfer the objects to S3 – Infrequent Access storageafter a certain duration of time.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+31. An application hosted in AWS allows users to upload videos to an S3 bucket. A user is required to be given access to upload some videos for a week based on the profile. How can be this be accomplished in the best way possible?
+A. Create an IAM bucket policy to provide access for a week’s duration.
+
+B. Create a pre-signed URL for each profile which will last for a week’s duration.
+
+C. Create an S3 bucket policy to provide access for a week’s duration.
+
+D. Create an IAM role to provide access for a week’s duration.
+
+Answer
+B. Create a pre-signed URL for each profile which will last for a week’s duration.
+
+Pre-signed URL’s are the perfect solution when you want to give temporary access to users for S3 buckets. So, whenever a new profile is created, 
+you can create a pre-signed URL to ensure that the URL lasts for a week and allows users to upload the required objects.
+
+For more information on pre-signed URL’s, please visit the following URL:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+32. An application reads and writes objects to an S3 bucket. When the application is fully deployed, the read/write traffic is very high.
+How should the architect maximize the Amazon S3 performance?
+
+A. Use as many S3 prefixes as you need in parallel to achieve the required throughput.
+
+B. Use the STANDARD_IA storage class.
+
+C. Prefix each object name with a hex hash key along with the current data.
+
+D. Enable versioning on the S3 bucket.
+
+Answer
+C. Prefix each object name with a hex hash key along with the current data.
+
+Based on the S3 new performance announcement, ” S3 request rate performance increase removes any previous guidance to randomize 
+object prefixes to achieve faster performance.
+” But Amazon exam questions and answers not yet updated. So Option C is correct answer as per AWS exam.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+33. An organization has a requirement to store 10TB worth of scanned files. They are required to have a search application in place to search through the scanned files.
+Which of the below mentioned options is ideal for implementing the search facility?
+
+A. Use S3 with reduced redundancy to store and serve the scanned files. Install acommercial search application on EC2 Instances and configure with
+Auto-Scaling and an ElasticLoad Balancer.
+
+B. Model the environment using CloudFormation. Use an EC2 instance running Apachewebserver and an open source search application,
+stripe multiple standard EBSvolumes together to store the scanned files with a search index.
+
+C. Use S3 with standard redundancy to store and serve the scanned files. UseCloudSearch for query processing, and use Elastic Beanstalk
+to host the website across multiple Availability Zones.
+
+D. Usea single-AZ RDS MySQL instance to store the search index for the scanned files anduse an EC2 instance with a custom application to search based on the index.
+
+Answer
+C. Use S3 with standard redundancy to store and serve the scanned files. UseCloudSearch for query processing, and use Elastic Beanstalk to host the
+website across multiple Availability Zones.
+
+With Amazon CloudSearch, you can quickly add rich search capabilities to your website or application. You don’t need to become a search expert or worry about hardware provisioning, setup, and maintenance.
+With a few clicks in the AWS Management Console, you can create a search domain and upload the data that you want to make searchable, 
+and Amazon CloudSearch will automatically provision the required resources and deploy a highly tuned search index.
+
+You can easily change your search parameters, fine tune search relevance, and apply new settings at any time. As your volume of data and traffic fluctuates, Amazon CloudSearch seamlessly scales to meet your needs.
+
+For more information on AWS CloudSearch , please visit the below link:
+
+https://aws.amazon.com/cloudsearch/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
