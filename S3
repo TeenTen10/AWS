@@ -1,3 +1,8 @@
+
+AWS :- 
+
+
+
 1. A company currently storing a set of documents in the AWS Simple Storage Service, is worried about the potential loss if these documents are ever deleted. Which of the following can be used to ensure protection from loss of the underlying documents in S3?
 A. Enable Versioning for the underlying S3 bucket.
 
